@@ -9,10 +9,11 @@ router.post('/register', async (req, res) => {
     const token = signToken(user);
     res.status(201).json({ token, user });
   } catch (err) {
+    console.log('REGISTER ERROR:', err);  // ← Add this line
     res.status(400).json(err);
   }
 });
- 
+
 // POST /api/users/login - Authenticate a user and return a token
 router.post('/login', async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
